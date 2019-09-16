@@ -28,8 +28,31 @@ router.get('/:id',
 router.patch('/:id', 
     requireAuth, 
     async (req: Request, res: Response) => {
-        //@TODO try it yourself
-        res.send(500).send("not implemented")
+        let { id } = req.params;
+        const item = await FeedItem.findByPk(id);
+
+        let caption = req.body.caption;
+        let fileName = req.body.url;
+
+        // check Caption is valid
+        if (!caption) {
+            caption = item.caption
+        }
+
+        // check Filename is valid
+        if (!fileName) {
+            fileName = item.url
+        }
+
+        const new_item = await new FeedItem({
+                caption: caption,
+                url: fileName
+        });
+
+        const saved_item = await new_item.save();
+
+        saved_item.url = AWS.getGetSignedUrl(saved_item.url);
+        res.status(201).send(saved_item);
 });
 
 
