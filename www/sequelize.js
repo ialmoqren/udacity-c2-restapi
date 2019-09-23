@@ -2,7 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const sequelize_typescript_1 = require("sequelize-typescript");
 const config_1 = require("./config/config");
-const c = config_1.config.dev;
+const c = config_1.config.postgres;
 // Instantiate new Sequelize instance!
 exports.sequelize = new sequelize_typescript_1.Sequelize({
     "username": c.username,

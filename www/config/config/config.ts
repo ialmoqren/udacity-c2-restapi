@@ -1,19 +1,14 @@
 export const config = {
-  "dev": {
-    "username": "udagramruttnerdev",
-    "password": "udagramruttnerdev",
-    "database": "udagramruttnerdev",
-    "host": "udagramruttnerdev.c79fzt27bzf6.us-east-2.rds.amazonaws.com",
-    "dialect": "postgres",
-    "aws_reigion": "us-east-2",
-    "aws_profile": "default",
-    "aws_media_bucket": "udagram-ruttner-dev"
-  },
-  "prod": {
-    "username": "",
-    "password": "",
-    "database": "udagram_prod",
-    "host": "",
+  "postgres": {
+    "username": process.env.POSTGRES_USERNAME,
+    "password": process.env.POSTGRES_PASSWORD,
+    "database": process.env.POSTGRES_DATABASE,
+    "host": process.env.POSTGRES_HOST,
     "dialect": "postgres"
+  },
+  "aws": {
+    "aws_reigion": process.env.AWS_REGIION,
+    "aws_profile": process.env.AWS_PROFILE,
+    "aws_media_bucket": process.env.AWS_MEDIA_BUCKET
   }
 }
